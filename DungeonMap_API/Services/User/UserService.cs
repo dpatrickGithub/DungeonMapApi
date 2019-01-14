@@ -20,6 +20,10 @@ namespace DungeonMap_API.Services
         public UserModel GetUserByUsername(string userName)
         {
             var user = _userRepo.GetUserByUserName(userName);
+            if (user == null)
+            {
+                return null;
+            }
             return new UserModel()
             {
                 Id = user.Id,
