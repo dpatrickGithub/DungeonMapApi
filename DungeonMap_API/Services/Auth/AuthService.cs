@@ -47,7 +47,7 @@ namespace DungeonMap_API.Services.Auth
 
         public bool VerifyPassword(string passwordHash, string passwordSalt, string plainTextPassword)
         {
-            var salt = Encoding.UTF8.GetBytes(passwordSalt);
+            var salt = Convert.FromBase64String(passwordSalt);
 
             // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
             string hashed = GenerateHash(plainTextPassword, salt);

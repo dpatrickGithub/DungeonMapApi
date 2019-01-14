@@ -49,11 +49,13 @@ namespace DungeonMap_API.Controllers
                 return BadRequest("Could not verify username and password");
             }
 
-            return Ok(new
+            var token = new
             {
                 Token = _authService.GenerateToken(request),
                 UserId = user.Id
-            });
+            };
+
+            return Ok(token);
         }
 
         [AllowAnonymous]
