@@ -26,7 +26,7 @@ namespace DungeonMap_API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [Route("users/{userId}")]
+        [Route("users/{userId:int}")]
         public IActionResult GetByUser(int userId)
         {
             var games = _gameService.GetGamesByUserId(userId);

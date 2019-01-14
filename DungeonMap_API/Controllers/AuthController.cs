@@ -21,13 +21,11 @@ namespace DungeonMap_API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IConfiguration _configuration;
         private IUserService _userService;
         private IAuthService _authService;
 
-        public AuthController(IConfiguration configuration, IUserService userService, IAuthService authService)
+        public AuthController(IUserService userService, IAuthService authService)
         {
-            _configuration = configuration;
             _userService = userService;
             _authService = authService;
         }
