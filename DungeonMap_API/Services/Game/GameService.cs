@@ -1,5 +1,7 @@
 ﻿using DungeonMap_API.Models;
 using DungeonMap_API.Repositories;
+using DungeonMap_Common;
+using DungeonMap_Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +50,34 @@ namespace DungeonMap_API.Services
             }
 
             return games;
+        }
+
+        public void CreateGame(GameModel game)
+        {
+            var entity = new Game()
+            {
+                Name = game.Name,
+                Characters = game.Characters.Select(ch => new DungeonMap_Entities.Character()
+                {
+                    CharacterName = ch.CharacterName,
+                    Id = ch.Id,
+                    RoleType = ch.RoleType,
+                    UserId = ch.UserId
+                }).ToList(),
+                GameType = game.GameType
+            };
+
+            _gameRepo.Create(entity);
+        }
+
+        public IEnumerable<GameUserModel> GetFriendsGames(int userId)
+        {
+            return _gameRepo.GetFriendsGames(userId).Select(g => new GameUserModel
+            {
+                GameId = g.Id,
+                GameName = g.Name,
+                UserName = g.Characters.First(ch => ch.RoleType == DungeonMap_Common.Enums.RoleType.GameMaster).User.UserName
+            });
         }
     }
 }

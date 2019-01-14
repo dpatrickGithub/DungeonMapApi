@@ -68,5 +68,17 @@ namespace DungeonMap_API.Services.Character
                 UserId = entity.UserId
             };
         }
+
+        public void CreateCharacter(CharacterModel model)
+        {
+            var entity = new DungeonMap_Entities.Character()
+            {
+                CharacterName = model.CharacterName,
+                GameId = model.GameId,
+                RoleType = model.RoleType,
+                UserId = model.UserId
+            };
+            _characterRepo.Create(entity);
+        }
     }
 }

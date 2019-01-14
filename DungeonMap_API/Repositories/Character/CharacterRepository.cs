@@ -39,5 +39,11 @@ namespace DungeonMap_API.Repositories
             var characters = _context.UserFriends.Include(x => x.Friend).Include(x => x.Friend.Characters).Where(uf => uf.UserId == userId).SelectMany(uf => uf.Friend.Characters);
             return characters.Where(c => c.GameId == default(int)); //Get only characters without an active game.
         }
+
+        public void Create(Character character)
+        {
+            _context.Add(character);
+            _context.SaveChanges();
+        }
     }
 }

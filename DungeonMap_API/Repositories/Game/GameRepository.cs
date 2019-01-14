@@ -22,5 +22,17 @@ namespace DungeonMap_API.Repositories
 
             return games.AsEnumerable();
         }
+
+        public void Create(Game game)
+        {
+            _context.Add(game);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Game> GetFriendsGames(int userId)
+        {
+            var friendsCharacters = _context.UserFriends.Include(uf => uf.Friend).Include(uf => uf.Friend.Characters).Where(uf => uf.UserId == userId).SelectMany(uf => uf.Friend.Characters);
+            return friendsCharacters.Include(ch => ch.Game).Select(ch => ch.Game);
+        }
     }
 }
