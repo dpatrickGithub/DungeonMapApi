@@ -9,5 +9,6 @@ namespace DungeonMap_API.Repositories
         IEnumerable<Character> GetCharactersByUserId(int userId);
         Character GetCharacterByUserAndGame(int userId, int gameId);
         IEnumerable<Character> GetUserFriendsCharacters(int userId);
+        void Create(Character character);
     }
 }

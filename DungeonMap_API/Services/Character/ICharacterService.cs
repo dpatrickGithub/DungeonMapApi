@@ -10,5 +10,6 @@ namespace DungeonMap_API.Services.Character
         CharacterModel GetCharacterByUserAndGame(int userId, int gameId);
         IEnumerable<CharacterModel> GetCharactersByUser(int userId);
         IEnumerable<IdNamePair> GetFriendsCharacters(int userId);
+        void CreateCharacter(CharacterModel model);
     }
 }

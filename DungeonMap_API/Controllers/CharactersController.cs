@@ -63,7 +63,7 @@ namespace DungeonMap_API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CharacterModel model)
         {
-            _characterService.Create(model);
+            _characterService.CreateCharacter(model);
             return Ok();
         }
     }
